@@ -1,0 +1,15 @@
+.container div {
+    display: flex;
+    flex-flow: row wrap;
+}
+            
+.row {
+    display: table-row; 
+}
+        
+.col {
+    display: table-cell; 
+    padding: 1em;
+    width:50%
+    /*border: 2px solid rgb(0, 0, 0);*/
+}

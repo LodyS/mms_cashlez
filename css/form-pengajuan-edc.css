@@ -1,0 +1,43 @@
+* {
+    font-size:11px;
+}
+
+body {
+    color:#1B1742;
+}
+
+.container div {
+    display: flex;
+  flex-flow: row wrap;
+}
+
+@media print {
+    body {-webkit-print-color-adjust: exact;}
+}
+
+
+ol {
+    counter-reset: item;
+    display: table;
+    type:1;
+
+}
+
+li {
+    list-style: none;
+    counter-increment: foo;
+    display: table-row;
+}
+
+li::before {
+    content: counter(foo) ".";
+    display: table-cell;
+    text-align: right;
+    padding-right: .3em;
+    content: counters(item, ".") " ";
+    counter-increment: item;
+}
+
+.rata_justify {
+    text-align:justify;
+}
