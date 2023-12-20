@@ -45,6 +45,10 @@ Route::middleware(['api_key'])->group(function(){
     Route::apiResource('upload-tanda-tangan', TandaTanganController::class); 
     
     Route::middleware('auth:sanctum')->group(function () {    
+
+        Route::post('/update-profil', [\App\Http\Controllers\API\AuthController::class, 'update']);
+        Route::post('/change-password', [\App\Http\Controllers\API\AuthController::class, 'changePassword']);
+
         Route::get('list-merchant', [MerchantController::class, 'index']);
         Route::apiResource('merchant', MerchantController::class)->except(['index']);
         Route::get('pengajuan-merchant', [MerchantController::class, 'pengajuan']);
@@ -52,7 +56,6 @@ Route::middleware(['api_key'])->group(function(){
         Route::apiResource('upload-dokumen', UploadDokumenController::class);
         Route::apiResource('upload-bukti-pembayaran', BuktiPembayaranController::class); 
        
-
         Route::post('/logout', [\App\Http\Controllers\API\AuthController::class, 'logout']);
     });  
 });

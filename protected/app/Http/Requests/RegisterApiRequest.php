@@ -27,7 +27,7 @@ class RegisterApiRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:255',
+            'name'=>'required|string|max:255|regex:/^[a-zA-Z]+$/',
             'email'=>'required|string|max:255|unique:users',
             'privilege_user_id'=>'required|string',
             'password'=>'required|string|min:8',

@@ -5,6 +5,7 @@ use Auth;
 use Hash;
 use Validator;
 use App\Models\User;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -34,7 +35,8 @@ class AuthController extends Controller
 
     public function login(LoginApiRequest $request)
     {
-        $user = User::with(['jabatan'])->where('username', $request->username)->first();
+        $user = User::with(['jabatan'])->where(DB::raw('BINARY `username`'), $request->username)->first();
+        $username = $user->username ?? '20231220tidakadausername';
 
         if(isset($request->password)):
             if(!Auth::attempt($request->only('username', 'password'))):
@@ -46,7 +48,11 @@ class AuthController extends Controller
             endif;
         endif;
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        if($username == '20231220tidakadausername'):
+            return response()->json(['success'=>false, 'message'=>'Wrong username'],401);
+        else:
+            $token = $user->createToken('auth_token')->plainTextToken;
+        endif;
 
         return response()->json([
             'success'=>true,
@@ -54,6 +60,37 @@ class AuthController extends Controller
             'access_token'=>$token,
             'token_type'=>'Bearer',
             'user'=>$user,
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::where('id', auth('sanctum')->user()->id)->first();
+
+        $user->update([
+            'name'=>($request->name !== null) ? $request->name : $user->name,
+            'username'=>($request->username !== null) ? $request->username : $user->username,
+            'email'=>($request->email !== null) ? $request->email : $user->email, 
+            'phone_number'=>($request->phone_number !== null) ? $request->phone_number : $user->phone_number, 
+        ]);
+
+        return response()->json([
+            'success'=>true,
+            'message'=>'Berhasil update profil'
+        ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = User::where('id', auth('sanctum')->user()->id)->first();
+
+        if($request->password !== null):
+            $user->update(['password'=>$request->password]);
+        endif;
+
+        return response()->json([
+            'success'=>true,
+            'message'=>'Berhasil ubah password'
         ]);
     }
 

@@ -30,7 +30,8 @@ class PreRegisterRequest extends FormRequest
             'password'=>'string|required|min:8',
             'pin'=>'string|required|min:4',
             'referal_code'=>'',
-            'kewarganegaraan'=>'string|required'
+            'kewarganegaraan'=>'string|required',
+            'name'=>'string|required|regex:/^[a-zA-Z]+$/'
         ];
     }
 
