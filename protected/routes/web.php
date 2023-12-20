@@ -88,3 +88,8 @@ Route::get('/clear-cache', function() {
     return 'DONE'; //Return anything
 });
 
+Route::get('/migrate', function() {
+    \Artisan::call('migrate');
+    dd('migrated!');
+});
+

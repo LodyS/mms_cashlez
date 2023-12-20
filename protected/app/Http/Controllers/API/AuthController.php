@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginApiRequest;
 use App\Http\Requests\RegisterApiRequest;
+use App\Http\Requests\ResetPasswordRequest;
 
 class AuthController extends Controller
 {
@@ -92,6 +93,21 @@ class AuthController extends Controller
             'success'=>true,
             'message'=>'Berhasil ubah password'
         ]);
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+	    $user = User::where('username', $request->username)->first();
+
+        if($user->pertanyaan == $request->pertanyaan && Hash::check($request->jawaban, $user->jawaban)):
+            $user->update([
+            	'password'=>'default_password'
+            ]);
+
+            return response()->json(['success'=>true, 'message'=>'Berhasil reset password']);
+        else:
+            return response()->json(['success'=>false, 'message'=>'Gagal reset password', 'data'=>$user]);
+        endif;
     }
 
     public function logout()

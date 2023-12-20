@@ -25,6 +25,8 @@ class User extends Authenticatable
         'pin',
         'referal_code',
         'kewarganegaraan',
+        'pertanyaan',
+        'jawaban',
     ];
 
     protected $hidden = [
@@ -62,5 +64,10 @@ class User extends Authenticatable
     public function setPinAttribute($value)
     {
         $this->attributes['pin'] = Hash::make($value);
+    }
+
+    public function setJawabanAttribute($value)
+    {
+        $this->attributes['jawaban'] = Hash::make($value);
     }
 }

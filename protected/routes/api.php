@@ -35,8 +35,8 @@ Route::middleware(['api_key'])->group(function(){
 
     Route::get('/merchant-branch/{token_applicant}', [MerchantBranchController::class, 'index']);
     Route::post('merchant-branch/store', [MerchantBranchController::class, 'store']);
-
     Route::post('store-pre-register', [UserController::class, 'preRegister']);
+    Route::post('reset-password', [\App\Http\Controllers\API\AuthController::class, 'resetPassword']);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();

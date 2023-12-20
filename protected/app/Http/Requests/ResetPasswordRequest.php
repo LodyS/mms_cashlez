@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Requests;
-
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PreRegisterRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,14 +25,9 @@ class PreRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'=>'string|required',
-            'password'=>'string|required|min:8',
-            'pin'=>'string|required|min:4',
-            'referal_code'=>'',
-            'kewarganegaraan'=>'string|required',
-            'name'=>'string|required|regex:/^[a-zA-Z]+$/',
-            'pertanyaan'=>'string|required',
-            'jawaban'=>'string|required'
+            'username'=>'required|string',
+            'jawaban'=>'required|string',
+            'pertanyaan'=>'required|string'
         ];
     }
 
