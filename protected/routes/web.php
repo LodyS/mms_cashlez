@@ -29,6 +29,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('form-pengajuan-edc/{token_applicant}', [PengajuanEdcController::class, 'print'])->name('form-pengajuan-edc');
+Route::get('form-pengajuan-merchant/{token_applicant}', [MerchantOperationController::class, 'print'])->name('form-pengajuan-merchant');
+
 Route::middleware(['auth'])->group(function(){
 
     Route::middleware(['superadmin'])->group(function(){
@@ -63,9 +66,6 @@ Route::middleware(['auth'])->group(function(){
         Route::get('detail-pengajuan-edc/{token_applicant}/{id}', [PengajuanEdcController::class, 'detail'])->name('detail-pengajuan-edc');
     });
 
-    Route::get('form-pengajuan-edc/{token_applicant}', [PengajuanEdcController::class, 'print'])->name('form-pengajuan-edc');
-    Route::get('form-pengajuan-merchant/{token_applicant}', [MerchantOperationController::class, 'print'])->name('form-pengajuan-merchant');
-    
     Route::middleware(['risk-analyst'])->group(function(){
         Route::resource('list-merchant-risk-analyst', RiskAnalystController::class);
         Route::get('proses-risk-analyst/{token_applicant}', [RiskAnalystController::class, 'proses'])->name('proses-risk-analyst');
