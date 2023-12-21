@@ -37,13 +37,5 @@ class UserSeeder extends Seeder
             'privilege_user_id' => '23', // risk analyst
             'password' => Hash::make('123456')
         ]);
-
-        User::create([
-            'name' => 'Inventory Control',
-            'username'=>'Inventory Control',
-            'email' => 'inventory_control@cahlez.com',
-            'privilege_user_id' => '31', // inventory control
-            'password' => Hash::make('123456')
-        ]);
     }
 }
