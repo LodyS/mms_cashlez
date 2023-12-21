@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Merchant Operation',
-            'username'=>'Demo MO',
+            'username'=>'demo_mo',
             'email' => 'mo@cahlez.com',
             'privilege_user_id' => '27', // merchant operation
             'password' => Hash::make('123456')
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Risk Analyst',
-            'username'=>'Demo Rsik',
+            'username'=>'demo_risk',
             'email' => 'risk@cahlez.com',
             'privilege_user_id' => '23', // risk analyst
             'password' => Hash::make('123456')

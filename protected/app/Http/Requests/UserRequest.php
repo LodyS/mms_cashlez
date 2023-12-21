@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|regex:/^[a-zA-Z]+$/',
+            'name'=>'required|string|max:255|regex:/^[a-zA-Z\s]+$/',
             'username'=>'required|string|unique:users',
             'password'=>'required|string',
             'privilege_user_id'=>'required|string',
