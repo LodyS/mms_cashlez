@@ -26,7 +26,7 @@ class PreRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'=>'string|required',
+            'username'=>'required|string|unique:users',
             'password'=>'string|required|min:8',
             'pin'=>'string|required|min:4',
             'referal_code'=>'',
