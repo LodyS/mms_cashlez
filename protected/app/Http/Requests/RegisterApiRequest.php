@@ -31,7 +31,9 @@ class RegisterApiRequest extends FormRequest
             'email'=>'required|string|max:255|unique:users',
             'privilege_user_id'=>'required|string',
             'password'=>'required|string|min:8',
-            'username'=>'required|string|unique:users'
+            'username'=>'required|string|unique:users',
+            'pertanyaan'=>'string',
+            'jawaban'=>'string'
         ];
     }
 

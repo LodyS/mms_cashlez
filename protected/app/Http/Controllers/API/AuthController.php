@@ -22,7 +22,9 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=>$request->password,
             'username'=>$request->username,
-            'privilege_user_id'=>$request->privilege_user_id
+            'privilege_user_id'=>$request->privilege_user_id,
+            'pertanyaan'=>$request->pertanyaan,
+            'jawaban'=>$request->jawaban
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;

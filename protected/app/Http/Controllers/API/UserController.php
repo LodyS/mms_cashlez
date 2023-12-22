@@ -21,6 +21,8 @@ class UserController extends Controller
             'kewarganegaraan'=>$request->kewarganegaraan,
             'merchant_client'=>'Y',
             'privilege_user_id'=>PrivilegeUser::whereId(1)->value('id'),
+            'pertanyaan'=>$request->pertanyaan,
+            'jawaban'=>$request->jawaban
         ]);
 
         return response()->json(['status'=>true, 'message'=>'Berhasil simpan data pre register']);
